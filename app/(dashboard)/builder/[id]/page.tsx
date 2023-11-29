@@ -1,5 +1,5 @@
-import { GetFormById } from "@/actions/form";
-import FormBuilder from "@/components/FormBuilder";
+import { GetFormById } from '@/actions/form';
+import FormBuilder from '@/components/FormBuilder';
 
 async function BuilderPage({
   params,
@@ -12,7 +12,7 @@ async function BuilderPage({
   const form = await GetFormById(Number(id));
 
   if (!form) {
-    throw new Error("form not found");
+    throw new Error('form not found');
   }
   return <FormBuilder form={form} />;
 }

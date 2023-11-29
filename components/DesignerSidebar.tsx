@@ -1,5 +1,5 @@
-import { FormElements } from "./FormElements";
-import SidebarBtnElement from "./SidebarBtnElement";
+import { FormElements } from './FormElements';
+import SidebarBtnElement from './SidebarBtnElement';
 
 function DesignerSidebar() {
   return (

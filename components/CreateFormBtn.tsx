@@ -1,9 +1,9 @@
-"use client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Button } from "./ui/button";
-import { ImSpinner2 } from "react-icons/im";
-import { BsFileEarmarkPlus } from "react-icons/bs";
+'use client';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { Button } from './ui/button';
+import { ImSpinner2 } from 'react-icons/im';
+import { BsFileEarmarkPlus } from 'react-icons/bs';
 import {
   Dialog,
   DialogContent,
@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
+} from './ui/dialog';
 import {
   Form,
   FormControl,
@@ -20,13 +20,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
-import { toast } from "./ui/use-toast";
-import { formSchema, formSchemaType } from "@/schemas/form";
-import { CreateForm } from "@/actions/form";
-import { useRouter } from "next/navigation";
+} from './ui/form';
+import { Input } from './ui/input';
+import { Textarea } from './ui/textarea';
+import { toast } from './ui/use-toast';
+import { formSchema, formSchemaType } from '@/schemas/form';
+import { CreateForm } from '@/actions/form';
+import { useRouter } from 'next/navigation';
 
 function CreateFormBtn() {
   const router = useRouter();
@@ -38,15 +38,15 @@ function CreateFormBtn() {
     try {
       const formId = await CreateForm(values);
       toast({
-        title: "Success",
-        description: "Form created successfully",
+        title: 'Success',
+        description: 'Form created successfully',
       });
       router.push(`/builder/${formId}`);
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Something went wrong, please try again later",
-        variant: "destructive",
+        title: 'Error',
+        description: 'Something went wrong, please try again later',
+        variant: 'destructive',
       });
     }
   }
@@ -55,7 +55,7 @@ function CreateFormBtn() {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          variant={"outline"}
+          variant={'outline'}
           className="group border border-primary/20 h-[190px] items-center justify-center flex flex-col 
         hover:border-primary hover:cursor-pointer border-dashed gap-4 bg-background"
         >

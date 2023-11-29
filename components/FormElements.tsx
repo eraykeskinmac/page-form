@@ -1,6 +1,6 @@
-import { TextFieldFormElement } from "./fields/TextField";
+import { TextFieldFormElement } from './fields/TextField';
 
-export type ElementsType = "TextField";
+export type ElementsType = 'TextField';
 
 export type FormElement = {
   type: ElementsType;
