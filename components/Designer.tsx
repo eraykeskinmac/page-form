@@ -80,8 +80,9 @@ function Designer() {
 }
 
 function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
-  const DesignerElement = FormElements[element.type].designerComponent;
+  const { removeElement } = useDesigner();
   const [mouseIsOver, setMouseIsOver] = useState<boolean>(false);
+
   const topHalf = useDroppable({
     id: element.id + '-top',
     data: {
@@ -98,6 +99,8 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
       isBottomHalfDesignerElement: true,
     },
   });
+
+  const DesignerElement = FormElements[element.type].designerComponent;
 
   return (
     <div
@@ -123,6 +126,9 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
             <Button
               className="flex justify-center items-center h-full border rounded-md rounded-l-none bg-red-500"
               variant={'outline'}
+              onClick={() => {
+                removeElement(element.id);
+              }}
             >
               <BiSolidTrash className="h-6 w-6" />
             </Button>
