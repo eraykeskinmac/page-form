@@ -4,9 +4,9 @@ import { Form } from "@prisma/client";
 import PreviewDialogBtn from "./PreviewDialogBtn";
 import SaveFormBtn from "./SaveFormBtn";
 import PublishFormBtn from "./PublishFormBtn";
-import Designer from "./Designer.1";
 import { DndContext } from "@dnd-kit/core";
 import DragOverlayWrapper from "./DragOverlayWrapper";
+import Designer from "./Designer";
 
 function FormBuilder({ form }: { form: Form }) {
   return (
