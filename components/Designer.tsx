@@ -19,7 +19,8 @@ import { Button } from './ui/button';
 import { BiSolidTrash } from 'react-icons/bi';
 
 function Designer() {
-  const { elements, addElement } = useDesigner();
+  const { elements, addElement, selectedElement, setSelectedElement } =
+    useDesigner();
 
   const droppable = useDroppable({
     id: 'designer-drop-area',
@@ -42,17 +43,18 @@ function Designer() {
         const newElement =
           FormElements[type as ElementsType].construct(idGenerator());
         addElement(0, newElement);
-
-        console.log('NEW ELEMENT', newElement);
       }
-
-      console.log('DRAG END', event);
     },
   });
 
   return (
     <div className="w-full h-full flex">
-      <div className="p-4 w-full">
+      <div
+        className="p-4 w-full"
+        onClick={() => {
+          if (selectedElement) setSelectedElement(null);
+        }}
+      >
         <div
           ref={droppable.setNodeRef}
           className={cn(
@@ -115,7 +117,6 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
   });
 
   if (draggable.isDragging) return null;
-  console.log('SELECTED EL', selectedElement);
   const DesignerElement = FormElements[element.type].designerComponent;
 
   return (
