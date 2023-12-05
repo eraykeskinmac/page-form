@@ -19,8 +19,13 @@ import { Button } from './ui/button';
 import { BiSolidTrash } from 'react-icons/bi';
 
 function Designer() {
-  const { elements, addElement, selectedElement, setSelectedElement } =
-    useDesigner();
+  const {
+    elements,
+    addElement,
+    selectedElement,
+    setSelectedElement,
+    removeElement,
+  } = useDesigner();
 
   const droppable = useDroppable({
     id: 'designer-drop-area',
@@ -29,20 +34,84 @@ function Designer() {
     },
   });
 
-  console.log('ELEMENTS', elements);
-
   useDndMonitor({
     onDragEnd: (event: DragEndEvent) => {
       const { active, over } = event;
       if (!active || !over) return;
 
       const isDesignerBtnElement = active.data?.current?.isDesignerBtnElement;
+      const isDroppingOverDesignerDropArea =
+        over.data?.current?.isDesignerDropArea;
 
-      if (isDesignerBtnElement) {
+      const droppingSiderbarBtnOverDesignerDropArea =
+        isDesignerBtnElement && isDroppingOverDesignerDropArea;
+
+      if (droppingSiderbarBtnOverDesignerDropArea) {
         const type = active.data?.current?.type;
         const newElement =
           FormElements[type as ElementsType].construct(idGenerator());
-        addElement(0, newElement);
+        addElement(elements.length, newElement);
+        return;
+      }
+      const isDroppingOverDesignerElementTopHalf =
+        over.data?.current?.isTopHalfDesignerElement;
+
+      const isDroppingOverDesignerElementBottomHalf =
+        over.data?.current?.isBottomHalfDesignerElement;
+
+      const isDroppingOverDesignerElement =
+        isDroppingOverDesignerElementBottomHalf |
+        isDroppingOverDesignerElementTopHalf;
+
+      const droppingSiderbarBtnOverDesignerElement =
+        isDesignerBtnElement && isDroppingOverDesignerElement;
+
+      if (droppingSiderbarBtnOverDesignerElement) {
+        const type = active.data?.current?.type;
+        const newElement =
+          FormElements[type as ElementsType].construct(idGenerator());
+
+        const overId = over.data?.current?.elementId;
+
+        const overElementIndex = elements.findIndex((el) => el.id === overId);
+        if (overElementIndex === -1) {
+          throw new Error('element not found');
+        }
+
+        let indexForNewElement = overElementIndex;
+        if (isDroppingOverDesignerElementBottomHalf) {
+          indexForNewElement = overElementIndex + 1;
+        }
+        addElement(indexForNewElement, newElement);
+        return;
+      }
+
+      const isDraggingDesignerElement = active.data?.current?.isDesignerElement;
+
+      const draggingDesginerElementOverAnotherDesignerElement =
+        isDroppingOverDesignerElement && isDraggingDesignerElement;
+
+      if (draggingDesginerElementOverAnotherDesignerElement) {
+        const activeId = active.data?.current?.elementId;
+        const overId = over.data?.current?.elementId;
+
+        const activeElementIndex = elements.findIndex(
+          (el) => el.id === activeId
+        );
+        const overElementIndex = elements.findIndex((el) => el.id === overId);
+
+        if (activeElementIndex === -1 || overElementIndex === -1) {
+          throw new Error('element not found');
+        }
+        const activeElement = { ...elements[activeElementIndex] };
+        removeElement(activeId);
+
+        let indexForNewElement = overElementIndex;
+        if (isDroppingOverDesignerElementBottomHalf) {
+          indexForNewElement = overElementIndex + 1;
+        }
+
+        addElement(indexForNewElement, activeElement);
       }
     },
   });
@@ -59,7 +128,7 @@ function Designer() {
           ref={droppable.setNodeRef}
           className={cn(
             'bg-background max-w-[920px] h-full m-auto rounded-xl flex flex-col flex-grow items-center justify-start flex-1 overflow-y-auto',
-            droppable.isOver && 'ring-2 ring-primary/20'
+            droppable.isOver && 'ring-4 ring-primary ring-inset'
           )}
         >
           {!droppable.isOver && elements.length === 0 && (
