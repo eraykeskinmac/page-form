@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Page-Form: Next.js Form Builder
 
-## Getting Started
+Welcome to Page-Form, a dynamic and user-friendly form builder designed with Next.js. This project simplifies the process of creating, designing, and managing forms, making it ideal for developers and designers seeking an efficient way to handle form-related tasks.
 
-First, run the development server:
+## Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 🛠️ **Form Building Interface**
+- Intuitive drag-and-drop interface for easy form creation.
+- Integrated buttons for previewing, saving, and publishing forms.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🎨 **Form Designing Tool**
+- Customizable design canvas for form elements.
+- Manageable state for form designs, enhancing user interaction.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 📑 **Sidebar Components**
+- Dedicated sidebars for selecting and configuring form elements.
+- Properties sidebar for detailed element customization.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 🌈 **Theme Switching**
+- Supports light, dark, and system themes for a personalized user experience.
 
-## Learn More
+### 🔄 **Context and Hooks**
+- Efficient state management for seamless component interaction.
 
-To learn more about Next.js, take a look at the following resources:
+### 💾 **Database Integration**
+- Prisma integration for robust backend form data management.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 📊 **Form Schema**
+- Defined schema for form data, ensuring consistency and validation.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## General Purpose
 
-## Deploy on Vercel
+Page-Form is designed to streamline the form creation and design process. Whether you're building simple contact forms or complex data collection interfaces, this project offers the tools and flexibility needed to create forms that are both functional and aesthetically pleasing. With its user-friendly interface and powerful features, Page-Form is an excellent choice for developers and designers alike.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Feel free to explore the repository and contribute to the project. Your feedback and contributions are always welcome!
