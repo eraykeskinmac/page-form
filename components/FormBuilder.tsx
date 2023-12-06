@@ -13,8 +13,14 @@ import {
 } from '@dnd-kit/core';
 import DragOverlayWrapper from './DragOverlayWrapper';
 import Designer from './Designer';
+import { useEffect, useState } from 'react';
+import useDesigner from './hooks/useDesigner';
+import { ImSpinner2 } from 'react-icons/im';
 
 function FormBuilder({ form }: { form: Form }) {
+  const { setElements } = useDesigner();
+  const [isReady, setIsReady] = useState(false);
+
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
       distance: 10, // 10px
@@ -27,6 +33,19 @@ function FormBuilder({ form }: { form: Form }) {
       tolerance: 5,
     },
   });
+
+  useEffect(() => {
+    const elements = JSON.parse(form.content);
+    setElements(elements);
+    setIsReady(true);
+  }, [form, setElements]);
+
+  if (!isReady) {
+    <div className="flex flex-col items-center justfiy-center w-full h-full">
+      <ImSpinner2 className="animate-spin h-12 w-12" />
+    </div>;
+  }
+
   const sensors = useSensors(mouseSensor, touchSensor);
   return (
     <DndContext sensors={sensors}>
@@ -40,7 +59,7 @@ function FormBuilder({ form }: { form: Form }) {
             <PreviewDialogBtn />
             {!form.published && (
               <>
-                <SaveFormBtn />
+                <SaveFormBtn id={form.id} />
                 <PublishFormBtn />
               </>
             )}
