@@ -18,7 +18,7 @@ import useDesigner from './hooks/useDesigner';
 import { ImSpinner2 } from 'react-icons/im';
 
 function FormBuilder({ form }: { form: Form }) {
-  const { setElements } = useDesigner();
+  const { setElements, setSelectedElement } = useDesigner();
   const [isReady, setIsReady] = useState(false);
 
   const mouseSensor = useSensor(MouseSensor, {
@@ -35,10 +35,13 @@ function FormBuilder({ form }: { form: Form }) {
   });
 
   useEffect(() => {
+    if (isReady) return;
     const elements = JSON.parse(form.content);
     setElements(elements);
-    setIsReady(true);
-  }, [form, setElements]);
+    setSelectedElement(null);
+    const readyTimeout = setTimeout(() => setIsReady(true), 500);
+    return () => clearTimeout(readyTimeout);
+  }, [form, setElements, isReady, setSelectedElement]);
 
   if (!isReady) {
     <div className="flex flex-col items-center justfiy-center w-full h-full">
