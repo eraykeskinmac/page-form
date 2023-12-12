@@ -232,14 +232,16 @@ function FormComponent({
   elementInstance,
   submitValue,
   isInvalid,
+  defaultValue,
 }: {
   elementInstance: FormElementInstance;
   submitValue?: SubmitFunction;
   isInvalid?: boolean;
+  defaultValue?: string;
 }) {
   const element = elementInstance as CustomInstance;
 
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(defaultValue || '');
   const [error, setError] = useState(false);
 
   useEffect(() => {
