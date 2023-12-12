@@ -154,7 +154,7 @@ export async function SubmitForm(formUrl: string, content: string) {
       submissions: {
         increment: 1,
       },
-      FormSubmissions: {
+      FormSubmission: {
         create: {
           content,
         },
