@@ -11,7 +11,8 @@ export type ElementsType =
   | 'SubTitleField'
   | 'ParagraphField'
   | 'SeperatorField'
-  | 'SpacerField';
+  | 'SpacerField'
+  | 'NumberField';
 
 export type SubmitFunction = (key: string, value: string) => void;
 
