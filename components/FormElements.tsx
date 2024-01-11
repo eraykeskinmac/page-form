@@ -8,6 +8,7 @@ import { NumberFieldFormElement } from './fields/NumberField';
 import { TextAreaFormElement } from './fields/TextAreaField';
 import { DateFieldFormElement } from './fields/DateField';
 import { SelectFieldFormElement } from './fields/SelectField';
+import { CheckboxFieldFormElement } from './fields/CheckboxField';
 
 export type ElementsType =
   | 'TextField'
@@ -19,7 +20,8 @@ export type ElementsType =
   | 'NumberField'
   | 'TextAreaField'
   | 'DateField'
-  | 'SelectField';
+  | 'SelectField'
+  | 'CheckboxField';
 
 export type SubmitFunction = (key: string, value: string) => void;
 
