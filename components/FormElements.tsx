@@ -68,4 +68,5 @@ export const FormElements: FormElementsType = {
   TextAreaField: TextAreaFormElement,
   DateField: DateFieldFormElement,
   SelectField: SelectFieldFormElement,
+  CheckboxField: CheckboxFieldFormElement,
 };

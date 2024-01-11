@@ -1,6 +1,7 @@
 import { GetFormById, GetFormWithSubmissions } from '@/actions/form';
 import FormLinkShare from '@/components/FormLinkShare';
 import VisitBtn from '@/components/VisitBtn';
+import React, { ReactNode } from 'react';
 import { StatsCard } from '../../page';
 import { LuView } from 'react-icons/lu';
 import { FaWpforms } from 'react-icons/fa';
@@ -15,8 +16,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { formatDistance } from 'date-fns';
-import { ReactNode } from 'react';
+import { format, formatDistance } from 'date-fns';
+import { Badge } from '@/components/ui/badge';
+import { Checkbox } from '@/components/ui/checkbox';
 
 async function FormDetailPage({
   params,
@@ -27,20 +29,23 @@ async function FormDetailPage({
 }) {
   const { id } = params;
   const form = await GetFormById(Number(id));
-
   if (!form) {
     throw new Error('form not found');
   }
+
   const { visits, submissions } = form;
+
   let submissionRate = 0;
 
   if (visits > 0) {
     submissionRate = (submissions / visits) * 100;
   }
+
   const bounceRate = 100 - submissionRate;
+
   return (
     <>
-      <div className="py-10  border-b border-muted">
+      <div className="py-10 border-b border-muted">
         <div className="flex justify-between container">
           <h1 className="text-4xl font-bold truncate">{form.name}</h1>
           <VisitBtn shareUrl={form.shareURL} />
@@ -60,14 +65,16 @@ async function FormDetailPage({
           loading={false}
           className="shadow-md shadow-blue-600"
         />
+
         <StatsCard
-          title="Total submission"
+          title="Total submissions"
           icon={<FaWpforms className="text-yellow-600" />}
-          helperText="All time form submission"
+          helperText="All time form submissions"
           value={submissions.toLocaleString() || ''}
           loading={false}
           className="shadow-md shadow-yellow-600"
         />
+
         <StatsCard
           title="Submission rate"
           icon={<HiCursorClick className="text-green-600" />}
@@ -76,8 +83,9 @@ async function FormDetailPage({
           loading={false}
           className="shadow-md shadow-green-600"
         />
+
         <StatsCard
-          title="Bounce Rate"
+          title="Bounce rate"
           icon={<TbArrowBounce className="text-red-600" />}
           helperText="Visits that leaves without interacting"
           value={bounceRate.toLocaleString() + '%' || ''}
@@ -107,7 +115,6 @@ async function SubmissionsTable({ id }: { id: number }) {
   }
 
   const formElements = JSON.parse(form.content) as FormElementInstance[];
-
   const columns: {
     id: string;
     label: string;
@@ -118,6 +125,11 @@ async function SubmissionsTable({ id }: { id: number }) {
   formElements.forEach((element) => {
     switch (element.type) {
       case 'TextField':
+      case 'NumberField':
+      case 'TextAreaField':
+      case 'DateField':
+      case 'SelectField':
+      case 'CheckboxField':
         columns.push({
           id: element.id,
           label: element.extraAttributes?.label,
@@ -131,7 +143,7 @@ async function SubmissionsTable({ id }: { id: number }) {
   });
 
   const rows: Row[] = [];
-  form.FormSubmission.forEach((submission) => {
+  form.FormSubmission.forEach((submission: any) => {
     const content = JSON.parse(submission.content);
     rows.push({
       ...content,
@@ -151,10 +163,10 @@ async function SubmissionsTable({ id }: { id: number }) {
                   {column.label}
                 </TableHead>
               ))}
+              <TableHead className="text-muted-foreground text-right uppercase">
+                Submitted at
+              </TableHead>
             </TableRow>
-            <TableHead className="text-right uppercase text-muted-foreground">
-              Submitted at
-            </TableHead>
           </TableHeader>
           <TableBody>
             {rows.map((row, index) => (
@@ -182,6 +194,18 @@ async function SubmissionsTable({ id }: { id: number }) {
 
 function RowCell({ type, value }: { type: ElementsType; value: string }) {
   let node: ReactNode = value;
+
+  switch (type) {
+    case 'DateField':
+      if (!value) break;
+      const date = new Date(value);
+      node = <Badge variant={'outline'}>{format(date, 'dd/MM/yyyy')}</Badge>;
+      break;
+    case 'CheckboxField':
+      const checked = value === 'true';
+      node = <Checkbox checked={checked} disabled />;
+      break;
+  }
 
   return <TableCell>{node}</TableCell>;
 }
