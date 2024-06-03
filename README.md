@@ -32,6 +32,49 @@ Welcome to Page-Form, a dynamic and user-friendly form builder designed with Nex
 
 Page-Form is designed to streamline the form creation and design process. Whether you're building simple contact forms or complex data collection interfaces, this project offers the tools and flexibility needed to create forms that are both functional and aesthetically pleasing. With its user-friendly interface and powerful features, Page-Form is an excellent choice for developers and designers alike.
 
----
+# Contributing
 
-Feel free to explore the repository and contribute to the project. Your feedback and contributions are always welcome!
+We welcome contributions to the `page-form` project. By participating, you agree to abide by the project’s Code of Conduct.
+
+## How to Contribute
+
+1. **Fork the Repository**: Click the "Fork" button at the top right of this page to create a copy of this repository on your GitHub account.
+
+2. **Clone Your Fork**: Clone your forked repository to your local machine.
+
+    ```sh
+    git clone https://github.com/your-username/page-form.git
+    ```
+
+3. **Create a Branch**: Create a new branch for your feature or bug fix.
+
+    ```sh
+    git checkout -b your-branch-name
+    ```
+
+4. **Make Your Changes**: Make your changes to the codebase. Ensure your code follows the project's coding conventions and passes any tests.
+
+5. **Commit Your Changes**: Commit your changes with a descriptive commit message.
+
+    ```sh
+    git add .
+    git commit -m "Description of your changes"
+    ```
+
+6. **Push to Your Fork**: Push your changes to your forked repository on GitHub.
+
+    ```sh
+    git push origin your-branch-name
+    ```
+
+7. **Submit a Pull Request**: Go to the original repository on GitHub and create a pull request. Describe your changes and the problem they solve.
+
+## Code of Conduct
+
+This project adheres to the Contributor Covenant Code of Conduct. By participating, you are expected to uphold this code. Please report unacceptable behavior to the project maintainers.
+
+## Reporting Issues
+
+If you find a bug or have a feature request, please report it by opening an issue on the [GitHub Issue Tracker](https://github.com/eraykeskinmac/page-form/issues).
+
+Thank you for your contributions!
