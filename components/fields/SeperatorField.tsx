@@ -10,7 +10,7 @@ import { Label } from '../ui/label';
 import { RiSeparator } from 'react-icons/ri';
 import { Separator } from '../ui/separator';
 
-const type: ElementsType = 'SeparatorField';
+const type: ElementsType = 'SeperatorField';
 
 export const SeparatorFieldFormElement: FormElement = {
   type,
