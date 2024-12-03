@@ -1,8 +1,8 @@
 # Page Form: Next.js Form Builder
 
-Welcome to Page-Form, a dynamic and user-friendly form builder designed with Next.js. This project simplifies the process of creating, designing, and managing forms, making it ideal for developers and designers seeking an efficient way to handle form-related tasks.
+Welcome to **Page-Form**, a dynamic and user-friendly form builder designed with **Next.js**. This project simplifies the process of creating, designing, and managing forms, making it ideal for developers and designers seeking an efficient way to handle form-related tasks.
 
-## Key Features
+## 🚀 Key Features
 
 ### 🛠️ **Form Building Interface**
 - Intuitive drag-and-drop interface for easy form creation.
@@ -28,15 +28,59 @@ Welcome to Page-Form, a dynamic and user-friendly form builder designed with Nex
 ### 📊 **Form Schema**
 - Defined schema for form data, ensuring consistency and validation.
 
-## General Purpose
+## 🎯 General Purpose
 
 Page-Form is designed to streamline the form creation and design process. Whether you're building simple contact forms or complex data collection interfaces, this project offers the tools and flexibility needed to create forms that are both functional and aesthetically pleasing. With its user-friendly interface and powerful features, Page-Form is an excellent choice for developers and designers alike.
 
-# Contributing
+## 🛠️ Installation
+
+To get started with this project, follow these steps:
+
+1. **Clone the Repository**: Clone this repository to your local machine.
+
+    ```sh
+    git clone https://github.com/your-username/page-form.git
+    ```
+
+2. **Install Dependencies**: Navigate to the project directory and install the dependencies.
+
+    ```sh
+    cd page-form
+    npm install
+    ```
+
+3. **Set Up Environment Variables**: Create a `.env` file in the root directory and add the following environment variables:
+
+    ```env
+    POSTGRES_URL=your_postgres_url
+    POSTGRES_URL_NO_SSL=vercel_postgres
+    POSTGRES_USER=vercel_postgres
+    POSTGRES_HOST=vercel_postgres
+    POSTGRES_PASSWORD=vercel_postgres
+    POSTGRES_DATABASE=vercel_postgres
+    POSTGRES_PRISMA_URL=your_postgres_prisma_url
+    POSTGRES_URL_NON_POOLING=your_postgres_non_pooling_url
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+    CLERK_SECRET_KEY=your_clerk_secret_key
+    ```
+
+4. **Run Database Migrations**: Run Prisma migrations to set up your database schema.
+
+    ```sh
+    npx prisma migrate dev
+    ```
+
+5. **Start the Development Server**: Start the Next.js development server.
+
+    ```sh
+    npm run dev
+    ```
+
+## 🤝 Contributing
 
 We welcome contributions to the `page-form` project. By participating, you agree to abide by the project’s Code of Conduct.
 
-## How to Contribute
+### How to Contribute
 
 1. **Fork the Repository**: Click the "Fork" button at the top right of this page to create a copy of this repository on your GitHub account.
 
